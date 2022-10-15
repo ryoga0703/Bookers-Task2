@@ -1,0 +1,33 @@
+<h1>Editing Book</h1>
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>error occurred
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%=form_with model: @book, url: update_book_path(@book.id), method: :patch do |f| %>
+
+  <label>Title</label>
+  <div class="field">
+    <%= f.text_field :title %>
+  </div>
+
+  <label>Body</label>
+  <div class="field">
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Update Book' %>
+  </div>
+<% end %>
+
+<%= link_to "Show", book_path(@book.id) %>
+
+|
+
+<%= link_to "Back", index_book_path %>
